@@ -1,0 +1,15 @@
+# https://www.youtube.com/watch?v=-q5tHoWhPK0&list=PLYAlGR1wWgUUyYZ3wX2GdnhiL-QVhAXfR&index=57
+
+class Solution:
+    def maxUncrossedLines(self, A: List[int], B: List[int]) -> int:
+        len_a = len(A)
+        len_b = len(B)
+        matrix = [[0 for i in range(len_b+1)] for j in range(len_a+1)]
+        
+        for i in range(len_a):
+            for j in range(len_b):
+                if A[i] == B[j]:
+                    matrix[i+1][j+1] = matrix[i][j]+1
+                else:
+                    matrix[i+1][j+1] = max(matrix[i+1][j],matrix[i][j+1])
+        return matrix[len_a][len_b]
