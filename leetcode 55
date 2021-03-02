@@ -1,4 +1,4 @@
-# https://www.youtube.com/watch?v=HU9vMfMihgM&list=PLYAlGR1wWgUUyYZ3wX2GdnhiL-QVhAXfR&index=56
+Q55:
 #tip: total number of jumps should be atleast equal to the index value we want to reach
 #if max jump possible is less than the index value we want to reach then it is not possible 
 class Solution:
