@@ -1,0 +1,22 @@
+Q1428. Leftmost column with atleast a one in a binary Matrix
+#here we are given with 2 functions - dimensions() will help us get the dimension of the matrix and 
+# get() will help us get the value at that specific row,column.
+
+class Solution:
+	def Leftmostcolumn(self, binaryMatrix: 'binaryMatrix') -> int:
+		rows,columns = binaryMatrix.dimensions() ## extracting the dimension of matrix
+		
+		current_row = 0
+		current_column = columns-1 #we are starting from the top row and last column
+		
+		while current_row < rows and current_column>=0:
+			# if found 0 then go down to next row and if found 1, then go left column.
+			if binaryMatrix.get(current_row, current_column) == 0:
+				current_row+=1
+			else:
+				current_column-=1
+			
+		if current_column != columns-1: ## checking if the we went atleast one left
+			return current_column+1
+		else:
+			return -1
