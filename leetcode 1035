@@ -1,5 +1,4 @@
-# https://www.youtube.com/watch?v=-q5tHoWhPK0&list=PLYAlGR1wWgUUyYZ3wX2GdnhiL-QVhAXfR&index=57
-
+Q1035:
 class Solution:
     def maxUncrossedLines(self, A: List[int], B: List[int]) -> int:
         len_a = len(A)
