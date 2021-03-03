@@ -1,0 +1,21 @@
+226. Invert Binary Tree 
+(left child will become right child and right child will become left child)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return None
+        r = self.invertTree(root.right) #recurrsion to parse till the end of the right root node i.e leaf
+        l = self.invertTree(root.left) #recurrsion to parse till the end of left root node i.e leaf
+        
+        #swapping the right nodes with the left nodes
+        root.right = l  
+        root.left = r
+        
+        return root
