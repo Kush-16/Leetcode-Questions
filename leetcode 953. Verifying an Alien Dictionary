@@ -1,0 +1,28 @@
+In an alien language, surprisingly they also use english lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language.
+Example 1:
+Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
+Output: true
+Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+
+class Solution:
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        
+        dict1= {}
+        for x,y in enumerate(order):
+            dict1[y] = x  # {h:0, l:1, a:2, b:3, .....}
+            
+        for i in range(len(words)-1):
+            word1 = words[i]
+            word2 = words[i+1] #comparing the first two words given in the list
+            
+            for j in range(min(len(word1),len(word2))):
+                if word1[j] != word2[j]:   #checking if the alphabets of the two words in the list are same or not... 
+                    if dict1[word1[j]] > dict1[word2[j]]: #if not same, then we check their numeric value in the dictionary 
+                        return False
+                    break
+            else:
+                if len(word1) > len(word2): # if the length of first word is more.. then obviously return false
+					return False
+                    
+        return True
