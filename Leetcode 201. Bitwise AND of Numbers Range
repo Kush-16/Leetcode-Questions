@@ -1,0 +1,15 @@
+Given a range [m, n] where 0 <= m <= n <= 2147483647, return the bitwise AND of all numbers in this range, inclusive.
+Example 1:
+Input: [5,7]
+Output: 4
+
+class Solution:
+    def rangeBitwiseAnd(self, m: int, n: int) -> int:
+        #here will will shift the binary values of integers till right until we have the same number
+        #eg: 9 is 00001001 and 12 is 00001100 ... our task is to shift these binary number till right until the rightmost digits for both the numbers are same.  
+        count = 0 #taking count as 0 and we will increment the count by 1 at every shift in both the numbers
+        while m < n:
+            m = m>>1 #shifting right by 1
+            n = n>>1 #shifting right by 1
+            count +=1
+        return m << count # once m < n does not satisfy.. we shift m to the right by the count
