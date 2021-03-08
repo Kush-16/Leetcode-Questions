@@ -1,0 +1,33 @@
+
+Given the root of a binary search tree, and an integer k, return the kth (1-indexed) smallest element in the tree.
+Input: root = [3,1,4,null,2], k = 1
+Output: 1
+
+*** In a BST... Left node < Root < Right node
+and we have 3 ways of traversal:
+	Inorder: Left - Root - Right
+	PreOrder: Root - Left - Right
+	PostOrder: Left - Right - Root
+	
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        
+        def in_order(root):
+            
+            #we are checking if the node is not root node.. then we are returning an empty array
+            if root is None:
+                return []
+            
+            left_side = in_order(root.left)
+            root_value = [root.val]
+            right_side = in_order(root.right)
+            
+            return left_side + root_value + right_side
+        
+        return in_order(root)[k-1] 
