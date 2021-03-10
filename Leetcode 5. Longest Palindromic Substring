@@ -1,0 +1,43 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        
+        #SOLUTION 1
+         #first we have to reverse the string. This will help us check if the reversed version is same  as the original string.
+        # rev = s[::-1]
+        # res = ""
+        # if len(s) == 1:
+        #     return s
+        #after reversing the string.. we will run a for loop in order to check if the character at index "i" is same in the original string and the reversed string. 
+        #If yes, then we will simply append it to the empty string that we have created i.e "res". And then at the end we will return the new strig: res
+        # for i in range(len(s)):
+        #     if s[i] == rev[i]:
+        #         res+=s[i]
+        # return res
+    
+    # ******* but the above code will only work for a couple of use cases and not all******#
+    #SOLUTION 2:
+    # so we need a different approach
+    # we will create a helper function which will have two pointers l and r. We will start from the middle element and check if the element right to it and left to it are same or not.. in case of odd length we will have one middle element and in case of string of even length, we will have two middle elements..
+        #here we are returning the sub string every time from l to r, including the middle element, in case the l and r values are equal which will make it a palindrome
+    
+        res = ""
+        if len(s) == 1:
+            return s
+        
+        for i in range(len(s)):
+            #like we discussed earlier.. if string is odd, we will have only one middle element and if even, we will have two middle elements.. so if odd.. we have two pointers pointing to one element which is i..
+            #and if the string is even.. then we have two pointers pointing to i and i+1...
+            odd = self.helper(s,i,i)
+            
+            even = self.helper(s,i,i+1)
+
+            res = max(odd, even, res, key = len) 
+        return res
+        
+    def helper(self, s,l,r):
+        while l>=0 and r<len(s) and s[l] == s[r]:
+            l-=1
+            r+=1
+        return s[l+1:r] 
+            
+        
